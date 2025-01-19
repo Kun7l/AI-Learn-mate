@@ -1,0 +1,46 @@
+
+.login-page {
+  max-width: 400px;
+  height: 55vh;
+  padding: 2rem;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #FEFAF6;
+}
+
+.header {
+  text-align: center;
+}
+
+.formGroup {
+  text-align: left;
+  margin: 0 0 15px 10%;
+}
+
+.label {
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 80%;
+}
+
+.button {
+  padding: 10px;
+  background-color: #102C57;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 85%;
+}
+
+.toggle {
+  cursor: pointer;
+  color: blue;
+}

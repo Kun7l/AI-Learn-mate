@@ -1,0 +1,41 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: -15vw;
+  height: 100%;
+  width: vw;
+  transition: left 0.3s ease-in-out;
+  background-color: #EADBC8;
+
+}
+.sidebar-toggle {
+  /* position: absolute;
+  top: 20%;
+  right: -60px;
+  height: 60px;
+  width: 60px;
+  z-index: 1; */
+  margin-top: 5px;
+ margin-left: 180px;
+ border: 1px solid rgb(181, 181, 181);
+ border-radius: 8px;
+ font-size: 1.5rem;
+ cursor: pointer;
+ height: 30px;
+ width: 35px;
+}
+
+.sidebar.open {
+  left: 0;
+}
+.content.open {
+  left: 15vw;
+}
+.close{
+    color: grey;
+    margin: 0;
+    padding: 0;
+}
+.close:hover{
+    color: black;
+}

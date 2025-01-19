@@ -1,0 +1,351 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body {
+  box-sizing: border-box;
+  padding: 10px;
+  font-family: "roboto";
+  margin: 0;
+}
+.home-container {
+  margin-left: 15%;
+  padding: 1rem;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 105%;
+}
+.radio {
+  margin: 10px 5px 0 20px;
+}
+.radio1 {
+  margin: 10px 5px 0 0px;
+}
+.sidebar {
+  padding: 10px;
+  background-color: #fff !important;
+}
+.sideul {
+  padding: 0;
+  margin-top: 50%;
+}
+.sideul li {
+  text-align: center;
+  list-style: none;
+  padding: 10px;
+  margin: 20px auto;
+  border-bottom: 2px solid #eadbc8;
+  width: 90%;
+  cursor: pointer;
+  transition: all ease-in 0.2s;
+  font-weight: 400;
+}
+.sideul li:hover {
+  background-color: #eadbc8;
+  border-radius: 8px;
+}
+.sideul li a {
+  text-decoration: none;
+  color: black;
+}
+.btmDrawer {
+  text-align: center;
+  position: relative;
+  top: 35%;
+}
+.btmDrawer button {
+  width: 80%;
+}
+.btmDrawer button span {
+  margin-right: 5px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+.sidebar div div {
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: white;
+  font-family: "Montserrat";
+}
+.sidebar .userdiv {
+  background-color: #102c57;
+  padding: 8px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+}
+.sidebar .userdiv .userIcon {
+  width: 15px !important;
+  margin-right: 15px;
+  font-size: 3rem;
+}
+.sidebar .userdiv .icondiv {
+  width: 25%;
+}
+.sidebar .userdiv .namediv {
+  /* width: 20px; */
+  text-align: left;
+}
+.sidebar .userdiv div h4 {
+  font-size: 1rem;
+}
+.sidebar .userdiv div h6 {
+  font-size: 0.7rem;
+}
+
+.breadLink {
+  color: black;
+}
+.breadMain {
+  font-weight: 600 !important;
+  color: black !important;
+}
+.listItem {
+  border: 1px soild black !important;
+}
+.card-body {
+  display: flex;
+}
+.card-btn {
+  margin-left: 5%;
+  margin-top: 8px;
+  height: 36px;
+}
+.cardDiv {
+  width: 60%;
+}
+.goHome {
+  color: rgb(79, 79, 79) !important;
+}
+
+.dangDiv {
+  padding: 5px 60px;
+  background-color: #eadbc8;
+  color: #000;
+  border-radius: 12px;
+}
+.dangDiv h1 {
+  font-size: 1.6rem;
+  /* background-color: red; */
+  margin: 40px 0 20px 0;
+}
+.dangDiv a {
+  color: #102c57;
+}
+.card-chip {
+  margin-top: 12px;
+  width: 95px;
+}
+.beginner {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+.pro {
+  background-color: #ffd700 !important;
+  color: black !important;
+}
+.intermidiate {
+  background-color: #2196f3 !important;
+  color: white !important;
+}
+.complete {
+  background-color: #000 !important;
+  color: white !important;
+}
+.exam-container {
+  background-color: #e9ecef;
+  padding: 60px;
+  border-radius: 12px;
+}
+.exam-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.question-div {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 12px;
+}
+.question h2 {
+  font-size: 1.2rem;
+}
+.exam-options {
+  margin-top: 10px;
+}
+.exam-options input {
+  margin: 0 20px;
+  size: 20px;
+}
+.give-exam {
+  background-color: #e9ecef;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.give-exam h2 {
+  font-size: 1.3rem;
+  margin-top: 5px;
+}
+.examBtn {
+  margin: 0 30px !important;
+  background-color: black !important;
+}
+.selectDiv {
+  width: 35% !important;
+  height: 45% !important;
+  left: 30%;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  background-color: #ced4da;
+  z-index: 1;
+  position: fixed;
+
+}
+.selectDiv h1 {
+  font-size: 2rem;
+}
+.selectDiv select {
+  width: 60%;
+  border-radius: 8px;
+  height: 35px;
+  padding: 5px;
+  border: none;
+}
+.selectDiv p {
+  font-size: 1rem !important;
+  padding: 5px;
+}
+.selectClose {
+  margin-left: 90%;
+  border-radius: 10px;
+}
+.closeIcon {
+  font-size: 1.5rem;
+}
+.selectDiv div input {
+  height: 40px;
+  width: 50%;
+  padding: 2px;
+  padding-left: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 20px;
+}
+.selectDiv div {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+.subBtn {
+  background-color: #14213d;
+  color: white;
+}
+.appBar {
+  background-color: #102c57 !important ;
+  border-radius: 8px 8px 0 0;
+}
+.listDiv {
+  padding: 20px;
+}
+.listItem {
+  border-radius: 5px;
+  transition: all 0.1s ease-in !important;
+}
+.listItem:hover {
+  background-color: #fff;
+}
+
+.listTitle {
+  font-size: 1.5rem;
+  font-family: "roboto";
+  background-color: #102c57;
+  color: white;
+  font-weight: 400;
+  padding-left: 50px !important;
+  padding: 10px;
+  border-radius: 8px;
+}
+.listContainer {
+  border-radius: 8px;
+  padding: 20px !important;
+  background-color: #e9ecef;
+}
+.chatBotBtn {
+  position: fixed !important;
+  top: 80%;
+  right: 2%;
+}
+.bot-container {
+  position: fixed;
+  top: 10%;
+  right: 6%;
+  width: 30%;
+  height: 80% !important;
+  padding: 0 !important;
+  border-radius: 12px;
+  z-index: 1;
+}
+.linksDiv {
+  background-color: #eadbc8;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 12px;
+}
+.linksDiv a {
+  color: black;
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 8px;
+}
+.chatIcon {
+  font-size: 1.5rem !important;
+}
+
+.body-container {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  min-height: 80vh;
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .home-container{
+    margin-left: 0;
+  }
+}
+
+.result-question{
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: #ced4da;
+  border-radius: 12px;
+}
+.result-question h4{
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.result-question p {
+  margin: 0 0 5px 0;
+}
+.green{
+  color: green;
+}
+.red{
+  color: red;
+}
+.barGraph{
+ text-align: center;
+}
+.barGraph .paperPadding{
+  padding: 20px 30px;
+  width: 1000px !important;
+}
+.ScoreCard :first-child{
+  padding: 20px;
+}
