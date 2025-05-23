@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chatbot.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.16.0",
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.3",
+    "connect-mongodb-session": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "flowbite-react": "^0.10.1",
+    "js-cookie": "^3.0.5",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.1",
+    "openai": "^4.53.0",
+    "primereact": "^10.7.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
