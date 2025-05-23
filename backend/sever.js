@@ -26,7 +26,7 @@ let connection = await mongoose.connect(process.env.MONGO_URL);
 
 //Cors prefrences
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow requests from this origin
+  origin: "*", // Allow requests from this origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Allow co  okies to be sent
   optionsSuccessStatus: 204,
@@ -351,7 +351,7 @@ app.post("/getTopic", async (req, res) => {
     };
   });
   console.log(topicArray);
-  
+
   res.send(topicArray);
 });
 
@@ -645,7 +645,8 @@ app.post("/getExamAnalysis", async (req, res) => {
   try {
     const user = await User.findOne({
       email: req.body.user,
-    });x
+    });
+    x;
     res.send(user.exam);
   } catch (err) {
     console.log(err);
@@ -662,7 +663,6 @@ app.post("/getAnalysisTopic", async (req, res) => {
     console.log(err);
   }
 });
-
 
 app.listen(3000, () => {
   console.log(`server running on port 3000`);
