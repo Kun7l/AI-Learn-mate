@@ -34,13 +34,19 @@ let connection = await mongoose.connect(process.env.MONGO_URL);
 
 const app = express();
 
+import cors from 'cors';
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://ai-learn-mate-i9hn-r4fb4u8g6-krunals-projects-b074691b.vercel.app',
+];
+
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-    if (origin === "http://localhost:5173" || origin === "https://ai-learn-mate-i9hn-git-main-krunals-projects-b074691b.vercel.app") {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
