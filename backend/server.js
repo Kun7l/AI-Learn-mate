@@ -42,7 +42,7 @@ app.use(express.static("public"));
 //Initializing sessions
 app.use(
   session({
-    secret: "krunal1234",
+    secret: process.env.SECRET,
     saveUninitialized: false,
     resave: true,
     cookie: { maxAge: 86400000, secure: false },
