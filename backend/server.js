@@ -37,7 +37,7 @@ const app = express();
 app.use(cors({
   origin: function(origin, callback) {
     if (!origin) return callback(null, true);
-    if (origin === "http://localhost:5173" || origin === "https://ai-learn-mate-i9hn-git-main-krunals-projects-b074691b.vercel.app/") {
+    if (origin === "http://localhost:5173" || origin === "https://ai-learn-mate-i9hn-git-main-krunals-projects-b074691b.vercel.app") {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
