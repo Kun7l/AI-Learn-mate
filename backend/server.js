@@ -34,8 +34,6 @@ let connection = await mongoose.connect(process.env.MONGO_URL);
 
 const app = express();
 
-import cors from 'cors';
-
 const allowedOrigins = [
   'http://localhost:5173',
   'https://ai-learn-mate-i9hn-r4fb4u8g6-krunals-projects-b074691b.vercel.app',
