@@ -1,4 +1,4 @@
-import { Progress } from "flowbite-react";
+
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
