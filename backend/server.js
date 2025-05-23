@@ -6,13 +6,13 @@ import session from "express-session";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-import { User } from "../models/user.js";
-import { Subject } from "../models/subject.js";
-import { SubTopic } from "../models/subtopic.js";
-import { SuggestedTopic } from "../models/sugTopic.js";
-import { SmallTopic } from "../models/smallTopic.js";
-import { boardSubjects } from "../models/boardsubject.js";
-import { Coursechallenge } from "../models/coursechallenge.js";
+import { User } from "./models/user.js";
+import { Subject } from "./models/subject.js";
+import { SubTopic } from "./models/subtopic.js";
+import { SuggestedTopic } from "./models/sugTopic.js";
+import { SmallTopic } from "./models/smallTopic.js";
+import { boardSubjects } from "./models/boardsubject.js";
+import { Coursechallenge } from "./models/coursechallenge.js";
 
 import dotenv from "dotenv";
 dotenv.config();
