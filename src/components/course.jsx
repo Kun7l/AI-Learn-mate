@@ -55,7 +55,7 @@ const Course = () => {
   const getData = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/course",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/course`,
         {
           topic: opt.course,
           level: opt.level,
@@ -76,7 +76,7 @@ const Course = () => {
   const getStepper = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/getStepper",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/getStepper`,
         {
           user: user.email,
           smallTopic: topicSub,
@@ -98,7 +98,7 @@ const Course = () => {
   const getLinks = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/yt",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/yt`,
         { opt: opt.course },
         { withCredentials: true }
       );
@@ -113,7 +113,7 @@ const Course = () => {
   const getExam = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/exam",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/exam`,
         { topic: topicSub, level: opt.level },
         { withCredentials: true }
       );

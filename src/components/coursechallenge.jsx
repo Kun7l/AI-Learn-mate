@@ -37,7 +37,7 @@ const Coursechallenge = (props) => {
     setShowResults(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/submitcourseChallenge",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/submitcourseChallenge`,
         {
           user: user.email,
           subject: opt.subject,

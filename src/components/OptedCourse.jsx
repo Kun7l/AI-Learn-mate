@@ -19,7 +19,7 @@ const OptedCourse = () => {
     console.log(user.email);
     const firstapp = async () => {
       const response = await axios.post(
-        "http://localhost:3000/opted",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/opted`,
         { user: user.email },
         {
           withCredentials: true,

@@ -17,7 +17,7 @@ const Explore = () => {
 const firstapp = async () => {
      if (user.board == false) {
       const response = await axios.post(
-        "http://localhost:3000/explore",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/explore`,
         { user: user.email, board: user.board,education:user.education },
         {
           withCredentials: true,
@@ -30,7 +30,7 @@ const firstapp = async () => {
      }
      else{
       const response = await axios.post(
-        "http://localhost:3000/exploreBoard",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/exploreBoard`,
         { user: user.email, board: user.board,education:user.education },
         {
           withCredentials: true,

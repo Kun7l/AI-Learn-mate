@@ -15,8 +15,8 @@ const Chatbot = (props) => {
     
     try {
       const response = await axios.post(
-        "http://localhost:3000/chatbot",
-        { input:input, content: props.content },
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/chatbot`,
+        { input: input, content: props.content },
         { withCredentials: true }
       );
       console.log(messages);

@@ -25,16 +25,27 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 let connection = await mongoose.connect(process.env.MONGO_URL);
 
 //Cors prefrences
-const corsOptions = {
-  origin: "*", // Allow requests from this origin
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Allow co  okies to be sent
-  optionsSuccessStatus: 204,
-};
+// const corsOptions = {
+//   origin: "", // Allow requests from this origin
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true, // Allow co  okies to be sent
+//   optionsSuccessStatus: 204,
+// };
 
 const app = express();
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
+    if (origin === "http://localhost:5173" || origin === "https://ai-learn-mate.onrender.com") {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));

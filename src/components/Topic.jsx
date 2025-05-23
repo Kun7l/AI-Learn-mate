@@ -27,7 +27,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Coursechallenge from "./coursechallenge";
-import { SuggestedTopic } from "../../models/sugTopic";
+
 
 const Topic = () => {
   let navigate = useNavigate();
@@ -45,7 +45,7 @@ const Topic = () => {
   const getData = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/getTopic",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/getTopic`,
         { topic: opt.course, subject: opt.subject, user: user.email },
         {
           withCredentials: true,
@@ -65,7 +65,7 @@ const Topic = () => {
   const getsugData = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/getsugTopic",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/getsugTopic`,
         { topic: opt.course, subject: opt.subject, user: user.email },
         {
           withCredentials: true,
@@ -88,7 +88,7 @@ const Topic = () => {
   const getExam = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/coursechallenge",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/coursechallenge`,
         {
           topics: arrayTopic,
           subtopic: opt.course,

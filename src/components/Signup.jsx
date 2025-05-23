@@ -20,7 +20,7 @@ const Signup = () => {
     e.preventDefault();
     // Handle signup logic here
     console.log("Signing up with", { name, email, password });
-    let r = await fetch("http://localhost:3000/signup", {
+    let r = await fetch(`${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/signup`, {
       method: "POST",
       body: JSON.stringify({
         userName: name,

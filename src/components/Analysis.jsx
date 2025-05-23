@@ -24,7 +24,7 @@ const Analysis = () => {
   const getsugData = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/getAnalysisTopic",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/getAnalysisTopic`,
         { user: user.email },
         {
           withCredentials: true,

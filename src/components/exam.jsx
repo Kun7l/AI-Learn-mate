@@ -35,7 +35,7 @@ const MCQTest = (props) => {
     setShowResults(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/submitExam",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/submitExam`,
         {
           user: user.email,
           subject: opt.subject,

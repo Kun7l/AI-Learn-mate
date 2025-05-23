@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
     const checkSession = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/auth/check-session",
+          `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/auth/check-session`,
           { withCredentials: true }
         );
        
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
   const login = async (userEmail, userPassword) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/login",
+        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/login`,
         { userEmail, userPassword },
         { withCredentials: true }
       );
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/logout", {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/logout`, {
         withCredentials: true,
       });
       setUser(null);
