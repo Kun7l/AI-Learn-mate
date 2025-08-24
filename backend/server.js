@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import session from "express-session";
 import Cookies from "js-cookie";
 import axios from "axios";
+import MongoStore from "connect-mongo";
 
 import { User } from "./models/user.js";
 import { Subject } from "./models/subject.js";
@@ -55,18 +56,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 //Initializing sessions
-app.use(
-  session({
-    secret: process.env.SECRET,
-    saveUninitialized: false,
-    resave: true,
-    cookie: { maxAge: 86400000, secure: false },
-  })
-);
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URL,
+    ttl: 14 * 24 * 60 * 60, // optional
+  }),
+  cookie: {
+    secure: process.env.NODE_ENV === "production", // true in production (HTTPS)
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // "none" for cross-site cookies
+  }
+}));
+
 
 app.get("/auth/check-session", (req, res) => {
-  if (req.session.userData) {
-    res.status(200).json({ user: req.session.userData });
+  if (req.session.user) {
+    res.status(200).json({ user: req.session.user });
   } else {
     res.status(401).json({ message: "Not authenticated" });
   }
@@ -87,7 +96,7 @@ app.post("/login", async (req, res) => {
     return res.status(400).json({ message: "wrong password" });
     console.log("failed");
   } else if (user.password == password) {
-    req.session.userData = user;
+    req.session.user = user;
     Cookies.set("userCookie", "user", { expires: 29 });
     return res.status(200).json({ user });
   }
