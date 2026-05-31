@@ -14,7 +14,6 @@ const SubCard = (props) => {
     navigate("/opted/topic");
   };
 
-
   return (
     <div className=" w-35 m-3 col-sm-5 card">
       <div className="card-body ">

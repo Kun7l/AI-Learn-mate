@@ -45,11 +45,9 @@ const Topic = () => {
   const getData = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/getTopic`,
+        "http://localhost:3000/getTopic",
         { topic: opt.course, subject: opt.subject, user: user.email },
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       for (let index = 0; index < response.data.length; index++) {
         if (!arrayTopic.includes(response.data[index])) {
@@ -65,11 +63,9 @@ const Topic = () => {
   const getsugData = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/getsugTopic`,
+        "http://localhost:3000/getsugTopic",
         { topic: opt.course, subject: opt.subject, user: user.email },
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       for (let index = 0; index < response.data.length; index++) {
         if (!sugarrayTopic.includes(response.data[index])) {
@@ -88,7 +84,7 @@ const Topic = () => {
   const getExam = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/coursechallenge`,
+        "http://localhost:3000/coursechallenge",
         {
           topics: arrayTopic,
           subtopic: opt.course,

@@ -19,11 +19,9 @@ const OptedCourse = () => {
     console.log(user.email);
     const firstapp = async () => {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/opted`,
+        "http://localhost:3000/opted",
         { user: user.email },
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       for (let index = 0; index < response.data[0].subtopic.length; index++) {
         array.push(response.data[0].subtopic[index]);

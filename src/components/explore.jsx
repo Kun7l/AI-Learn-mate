@@ -14,11 +14,11 @@ const Explore = () => {
   const [array, setarray] = useState([]);
   const [first, setfirst] = useState(0);
   const { user } = useContext(AuthContext);
-const firstapp = async () => {
-     if (user.board == false) {
+  const firstapp = async () => {
+    if (user.board == false) {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/explore`,
-        { user: user.email, board: user.board,education:user.education },
+        `http://localhost:3000/explore`,
+        { user: user.email, board: user.board, education: user.education },
         {
           withCredentials: true,
         }
@@ -27,11 +27,11 @@ const firstapp = async () => {
         array.push(response.data[index].name);
         setfirst(1);
       }
-     }
-     else{
+    }
+    else {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/exploreBoard`,
-        { user: user.email, board: user.board,education:user.education },
+        "http://localhost:3000/exploreBoard",
+        { user: user.email, board: user.board, education: user.education },
         {
           withCredentials: true,
         }
@@ -40,11 +40,11 @@ const firstapp = async () => {
         array.push(response.data[index].name);
         setfirst(1);
       }
-     }
-    };
+    }
+  };
   useEffect(() => {
     firstapp();
-  }, );
+  },);
 
   return (
     <>

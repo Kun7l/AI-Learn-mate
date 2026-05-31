@@ -22,7 +22,7 @@ const OptionsComponent = (props) => {
   useEffect(() => {
     const firstapp = async () => {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/subject`,
+        "http://localhost:3000/subject",
         {
           level: user.education,
           subject: props.subject,
@@ -63,7 +63,7 @@ const OptionsComponent = (props) => {
     console.log(user);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/setoption`,
+        "http://localhost:3000/setoption",
         { option: selectedOption, subject: props.subject, user: user.email },
         { withCredentials: true }
       );

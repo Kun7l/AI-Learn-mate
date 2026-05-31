@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
@@ -6,6 +6,7 @@ import { courseContext } from "../context/courseContext";
 import { AuthContext } from "../context/authcontext";
 import { topicContext } from "../context/topicContext";
 import { examContext } from "../context/examContext";
+import socket from "../socket";
 
 import { GoHomeFill } from "react-icons/go";
 import { GoPencil } from "react-icons/go";
@@ -47,36 +48,78 @@ const Course = () => {
   const { topicSub, settopicSub } = useContext(topicContext);
   const [content, setcontent] = useState("");
   const [isloading, setisloading] = useState(true);
+  const [isStreaming, setisStreaming] = useState(false);
   const [links, setlinks] = useState([]);
   const [questions, setquestions] = useState([]);
   const [chatBotOpen, setchatBotOpen] = useState(false);
   const [suggestedTopic, setsuggestedTopic] = useState([]);
 
-  const getData = async () => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/course`,
-        {
-          topic: opt.course,
-          level: opt.level,
-          smallTopic: topicSub,
-          user: user.email,
-          subject: opt.subject,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      setcontent(response.data);
-      setisloading(false);
-    } catch (error) {
-      console.log(error);
-    }
+  // Use ref to accumulate streamed content (avoids stale closure issues)
+  const contentRef = useRef("");
+
+  const getData = () => {
+    setisloading(true);
+    setisStreaming(true);
+    contentRef.current = "";
+    setcontent("");
+
+    // Emit the request via Socket.IO
+    socket.emit("course:generate", {
+      user: user.email,
+      topic: opt.course,
+      level: opt.level,
+      smallTopic: topicSub,
+      subject: opt.subject,
+    });
   };
+
+  // Set up Socket.IO listeners for streaming course content
+  useEffect(() => {
+    // Each chunk arrives as Gemini generates it — append to content
+    const onChunk = (data) => {
+      contentRef.current += data.html;
+      setcontent(contentRef.current);
+      setisloading(false);
+    };
+
+    // Stream complete — final full content
+    const onDone = (data) => {
+      setcontent(data.html);
+      setisloading(false);
+      setisStreaming(false);
+    };
+
+    // Content was already cached — delivered instantly
+    const onCached = (data) => {
+      setcontent(data.html);
+      setisloading(false);
+      setisStreaming(false);
+    };
+
+    // Handle errors
+    const onError = (data) => {
+      console.error("Course streaming error:", data.message);
+      setisloading(false);
+      setisStreaming(false);
+    };
+
+    socket.on("course:chunk", onChunk);
+    socket.on("course:done", onDone);
+    socket.on("course:cached", onCached);
+    socket.on("course:error", onError);
+
+    // Cleanup listeners on unmount
+    return () => {
+      socket.off("course:chunk", onChunk);
+      socket.off("course:done", onDone);
+      socket.off("course:cached", onCached);
+      socket.off("course:error", onError);
+    };
+  }, []);
   const getStepper = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/getStepper`,
+        "http://localhost:3000/getStepper",
         {
           user: user.email,
           smallTopic: topicSub,
@@ -98,7 +141,7 @@ const Course = () => {
   const getLinks = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/yt`,
+        "http://localhost:3000/yt",
         { opt: opt.course },
         { withCredentials: true }
       );
@@ -113,7 +156,7 @@ const Course = () => {
   const getExam = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"}/exam`,
+        "http://localhost:3000/exam",
         { topic: topicSub, level: opt.level },
         { withCredentials: true }
       );
@@ -213,6 +256,18 @@ const Course = () => {
                   className="dangDiv"
                   dangerouslySetInnerHTML={{ __html: content }}
                 />
+                {isStreaming && (
+                  <span className="streaming-cursor" style={{
+                    display: "inline-block",
+                    width: "8px",
+                    height: "18px",
+                    backgroundColor: "#007bff",
+                    marginLeft: "4px",
+                    animation: "blink 0.8s infinite",
+                    verticalAlign: "text-bottom",
+                    borderRadius: "2px",
+                  }} />
+                )}
 
                 <div className="linksDiv">
                   {links.map((text, index) => (
